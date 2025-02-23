@@ -1,9 +1,11 @@
-const HomePage = () => {
+import HomePage from "../pages/HomePage";
+
+const Home = () => {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className="px-6 ">
+      <HomePage />
     </div>
   );
 };
 
-export default HomePage;
+export default Home;

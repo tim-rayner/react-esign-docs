@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import NavigationBar from "./components/NavigationBar";
+import { Box } from "@mui/material";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,12 +23,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log(
+    `since you're here, why don't you buy me a coffee 😇\n\nhttps://paypal.me/timrayner` // 🤪
+  );
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#121418]`}
       >
-        {children}
+        <NavigationBar />
+        <Box className="">{children}</Box>
       </body>
     </html>
   );
