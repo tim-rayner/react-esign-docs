@@ -22,7 +22,7 @@
     "react-color": "^2.19.3",
     "react-dom": "^19.0.0",
     "styled-components": "^6.1.15",
-    "react-esign": "^1.0.6"
+    "react-esign": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
