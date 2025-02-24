@@ -8,7 +8,6 @@ type CodePreviewProps = {
   isDownload: boolean;
   isClear: boolean;
   themeColor: string;
-  strokeWidth: number;
   inputMode: "draw" | "type" | "auto";
   buttonType: "button" | "text";
 };
@@ -19,7 +18,6 @@ const CodePreview = ({
   isDownload,
   isClear,
   themeColor,
-  strokeWidth,
   inputMode,
   buttonType,
 }: CodePreviewProps) => {
@@ -29,7 +27,6 @@ const CodePreview = ({
       ${isDisabled ? "isDisabled={true}" : ""}
       ${isError ? "isError={true}" : ""}
       themeColor="${themeColor}"
-      strokeWidth={${String(strokeWidth)}}
       ${inputMode !== "draw" ? `inputMode="${inputMode}"` : ""}
       buttonType="${buttonType}"
       ${isDownload ? "isDownload={true}" : ""}
@@ -51,19 +48,14 @@ const CodePreview = ({
         display: { xs: "none", md: "flex" },
         width: "100%",
         minWidth: 0,
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100%",
-        height: { xs: "300px", sm: "400px" },
+
         flexDirection: "column",
         gap: 2,
         px: { xs: 2, sm: 0 },
       }}
     >
-      <Typography variant="h6" sx={{ textAlign: "center" }}>
-        Code Preview
-      </Typography>
-      <pre className="mockup-code bg-[#2f1a08] p-1 rounded-lg text-white whitespace-pre-wrap break-all w-full max-w-[500px] relative [counter-reset:line] mx-auto">
+      <Typography variant="h6">Code Preview</Typography>
+      <pre className="mockup-code bg-[#031628] p-1 rounded-lg text-white whitespace-pre-wrap break-all w-full max-w-[500px] relative [counter-reset:line] ">
         <Tooltip title="Copy to clipboard">
           <IconButton
             onClick={handleCopy}

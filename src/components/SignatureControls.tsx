@@ -2,7 +2,6 @@ import {
   FormControlLabel,
   FormGroup,
   Switch,
-  TextField,
   Select,
   MenuItem,
 } from "@mui/material";
@@ -14,7 +13,6 @@ interface SignatureControlsProps {
   isDownload: boolean;
   isClear: boolean;
   themeColor: string;
-  strokeWidth: number;
   inputMode: "draw" | "type" | "auto";
   buttonType: "button" | "text";
   onControlChange: <T extends keyof SignatureControlsProps>(
@@ -29,7 +27,6 @@ const SignatureControls = ({
   isDownload,
   isClear,
   themeColor,
-  strokeWidth,
   inputMode,
   buttonType,
   onControlChange,
@@ -87,16 +84,6 @@ const SignatureControls = ({
           color={themeColor}
           onChange={(color: ColorResult) =>
             onControlChange("themeColor", color.hex)
-          }
-        />
-      </div>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <div>Stroke Width</div>
-        <TextField
-          value={strokeWidth}
-          onChange={(e) =>
-            onControlChange("strokeWidth", Number(e.target.value))
           }
         />
       </div>
