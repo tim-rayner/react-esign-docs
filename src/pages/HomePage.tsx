@@ -1,20 +1,13 @@
 "use client";
 
-import {
-  Box,
-  FormControlLabel,
-  FormGroup,
-  Switch,
-  TextField,
-  Typography,
-  Select,
-  MenuItem,
-} from "@mui/material";
-import { CirclePicker } from "react-color";
-
+import { Box, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SignatureInput from "react-esign";
 import { useState } from "react";
+import SignatureControls, {
+  SignatureControlsProps,
+} from "../components/SignatureControls";
+import CodePreview from "../components/CodePreview";
 const HomePage = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -42,8 +35,45 @@ const HomePage = () => {
         lineHeight: 1.2,
         letterSpacing: "-0.015em",
       },
+      h4: {
+        fontSize: "1.25rem",
+        fontWeight: 400,
+        lineHeight: 1.2,
+      },
     },
   });
+
+  const handleControlChange = <T extends keyof SignatureControlsProps>(
+    key: T,
+    value: SignatureControlsProps[T]
+  ) => {
+    switch (key) {
+      case "isDisabled":
+        setIsDisabled(value as boolean);
+        break;
+      case "isError":
+        setIsError(value as boolean);
+        break;
+      case "themeColor":
+        setThemeColor(value as string);
+        break;
+      case "strokeWidth":
+        setStrokeWidth(value as number);
+        break;
+      case "inputMode":
+        setInputMode(value as "draw" | "type" | "auto");
+        break;
+      case "buttonType":
+        setButtonType(value as "button" | "text");
+        break;
+      case "isDownload":
+        setIsDownload(value as boolean);
+        break;
+      case "isClear":
+        setIsClear(value as boolean);
+        break;
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -61,7 +91,7 @@ const HomePage = () => {
         <Typography variant="h1" sx={{ textAlign: "center" }}>
           React ESign ✍🏻
         </Typography>
-        <Typography variant="h2" sx={{ textAlign: "center", maxWidth: 600 }}>
+        <Typography variant="h4" sx={{ textAlign: "center", maxWidth: 600 }}>
           react-scribble is a lightweight, dependency-free React component built
           for capturing handwritten signatures. It provides a simple and
           responsive signature pad, perfect for e-signatures, form
@@ -71,8 +101,12 @@ const HomePage = () => {
 
       <Box>
         <Box
-          sx={{ width: "75%", height: "100%", margin: "0 auto" }}
-          className="border-2 border-gray-300 rounded-md demo-container"
+          sx={{
+            height: "100%",
+            margin: "0 auto",
+            minHeight: "200px",
+          }}
+          className="demo-container w-fit"
         >
           <SignatureInput
             onChange={() => {}}
@@ -88,97 +122,41 @@ const HomePage = () => {
         </Box>
       </Box>
 
-      <Box>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={isDisabled}
-                onChange={(e) => setIsDisabled(e.target.checked)}
-              />
-            }
-            label="Disabled"
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: 600,
+          display: "flex",
+          flexDirection: "row",
+          gap: 2,
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: 12,
+        }}
+      >
+        <SignatureControls
+          isDisabled={isDisabled}
+          isError={isError}
+          isDownload={isDownload}
+          isClear={isClear}
+          themeColor={themeColor}
+          strokeWidth={strokeWidth}
+          inputMode={inputMode}
+          buttonType={buttonType}
+          onControlChange={handleControlChange}
+        />
+        <Box sx={{ overflow: "auto", width: "fit-content" }}>
+          <CodePreview
+            isDisabled={isDisabled}
+            isError={isError}
+            isDownload={isDownload}
+            isClear={isClear}
+            themeColor={themeColor}
+            strokeWidth={strokeWidth}
+            inputMode={inputMode}
+            buttonType={buttonType}
           />
-          <FormControlLabel
-            control={
-              <Switch
-                checked={isError}
-                onChange={(e) => setIsError(e.target.checked)}
-              />
-            }
-            label="Error"
-          />
-          <FormControlLabel
-            control={
-              <Switch
-                checked={isDownload}
-                onChange={(e) => setIsDownload(e.target.checked)}
-              />
-            }
-            label="Download"
-          />
-          <FormControlLabel
-            control={
-              <Switch
-                checked={isClear}
-                onChange={(e) => setIsClear(e.target.checked)}
-              />
-            }
-            label="Clear"
-          />
-
-          <FormControlLabel
-            control={
-              <CirclePicker
-                color={themeColor}
-                onChange={(color) => setThemeColor(color.hex)}
-              />
-            }
-            label="Theme Color"
-          />
-          <FormControlLabel
-            control={
-              <TextField
-                value={strokeWidth}
-                onChange={(e) => setStrokeWidth(Number(e.target.value))}
-              />
-            }
-            label="Stroke Width"
-          />
-          <FormControlLabel
-            control={
-              <Select
-                value={inputMode}
-                onChange={(e) =>
-                  setInputMode(e.target.value as "auto" | "type" | "draw")
-                }
-                size="small"
-                sx={{ minWidth: 120 }}
-              >
-                <MenuItem value="draw">Draw</MenuItem>
-                <MenuItem value="type">Type</MenuItem>
-                <MenuItem value="auto">Auto</MenuItem>
-              </Select>
-            }
-            label="Input Mode"
-          />
-          <FormControlLabel
-            control={
-              <Select
-                value={buttonType}
-                onChange={(e) =>
-                  setButtonType(e.target.value as "button" | "text")
-                }
-                size="small"
-                sx={{ minWidth: 120 }}
-              >
-                <MenuItem value="button">Button</MenuItem>
-                <MenuItem value="text">Text</MenuItem>
-              </Select>
-            }
-            label="Button Type"
-          />
-        </FormGroup>
+        </Box>
       </Box>
     </ThemeProvider>
   );
