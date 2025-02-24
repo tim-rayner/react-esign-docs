@@ -21,7 +21,8 @@
     "react-code-blocks": "^0.1.6",
     "react-color": "^2.19.3",
     "react-dom": "^19.0.0",
-    "styled-components": "^6.1.15"
+    "styled-components": "^6.1.15",
+    "react-esign": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

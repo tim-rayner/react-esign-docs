@@ -91,8 +91,8 @@ const HomePage = () => {
             React ESign ✍🏻
           </Typography>
           <Typography variant="body1" className="text-center max-w-[600px]">
-            react-scribble is a lightweight, dependency-free React component
-            built for capturing handwritten signatures. It provides a simple and
+            react-esign is a lightweight, dependency-free React component built
+            for capturing handwritten signatures. It provides a simple and
             responsive signature pad, perfect for e-signatures, form
             authentication, or user confirmations in React applications
           </Typography>
