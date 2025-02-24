@@ -122,16 +122,17 @@ const HomePage = () => {
         </Box>
       </Box>
 
+      {/* Columns */}
       <Box
         sx={{
           width: "100%",
-          maxWidth: 600,
           display: "flex",
           flexDirection: "row",
           gap: 2,
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: 12,
+          alignItems: "stretch",
+          justifyContent: "space-between",
+          marginTop: 5,
+          marginBottom: 12,
         }}
       >
         <SignatureControls
@@ -145,7 +146,7 @@ const HomePage = () => {
           buttonType={buttonType}
           onControlChange={handleControlChange}
         />
-        <Box sx={{ overflow: "auto", width: "fit-content" }}>
+        <Box sx={{ flex: 1 }}>
           <CodePreview
             isDisabled={isDisabled}
             isError={isError}

@@ -64,7 +64,7 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Open github repo">
               <IconButton
                 href={GITHUB_URL}
                 target="_blank"
